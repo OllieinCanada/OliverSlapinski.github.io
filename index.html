@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Oliver Slapinski - Personal Portfolio and Project/Interest Blog</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-  <div class="header">
-    <h1>Oliver Slapinski</h1>
-    <h2>Personal portfolio and project/interest blog</h2>
-  </div>
-  <div class="container">
-    <div class="intro">
-      <p>Welcome to my website. Here you can find my personal portfolio and project/interest blog. I'll be posting code snippets and updates on projects related to AI, web development, and cyber security. Additionally, I'll be sharing things that I find generally interesting in these areas.</p>
-    </div>
-    <div class="photo">
-      <img src="oliver.jpg" alt="Oliver Slapinski">
-    </div>
-    <div class="project-list">
-      <h3>Recent Projects</h3>
-      <ul>
-        <li>AI Chatbot</li>
-        <li>Web Scraping Tool</li>
-        <li>Encryption App</li>
-      </ul>
-    </div>
-  </div>
-  <script type="text/javascript" src="script.js"></script>
-</body>
+  <head>
+    <style>
+      body {
+        background-image: url("website.png");
+        background-size: cover;
+        text-align: center;
+      }
+      h1 {
+        font-size: 4em;
+        background-image: linear-gradient(to right, #ff0000, #ffa500, #ffff00, #00ff00, #0000ff, #ff00ff); /* Rainbow gradient */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+      #fire {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: url("path/to/fire.gif") no-repeat;
+        background-size: contain;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to my website</h1>
+    <p>Here you can find my personal portfolio and project/interest blog. I'll be posting code snippets and updates on projects related to AI, web development, and cyber security. Additionally, I'll be sharing things that I find generally interesting in these areas.</p>
+    <div id="fire"></div>
+    <script>
+      // Get the fire element
+      const fire = document.getElementById("fire");
+      // Animate the fire
+      setInterval(() => {
+        fire.style.backgroundPositionY = `${Math.random() * 100}%`;
+      }, 50);
+    </script>
+  </body>
 </html>
