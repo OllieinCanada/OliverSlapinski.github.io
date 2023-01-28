@@ -15,11 +15,22 @@
         background-clip: text;
         text-fill-color: transparent;
       }
+      #small-pic {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 300px;
+        left: 50%;
+        margin-left: -50px;
+        background-image: url("small-pic.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
     </style>
   </head>
   <body>
     <h1>Welcome to my website</h1>
     <p>Here you can find my personal portfolio and project/interest blog. I'll be posting code snippets and updates on projects related to AI, web development, and cyber security. Additionally, I'll be sharing things that I find generally interesting in these areas.</p>
-    <img src="small.png" alt="Small Image" style="display: block; margin: auto;">
+    <div id="small-pic"></div>
   </body>
 </html>
