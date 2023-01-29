@@ -1,36 +1,31 @@
+Html:
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body {
-        background-image: url("website.png");
-        background-size: cover;
-        text-align: center;
-      }
-      h1 {
-        font-size: 4em;
-        background-image: linear-gradient(to right, #ff0000, #ffa500, #ffff00, #00ff00, #0000ff, #ff00ff); /* Rainbow gradient */
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
-      }
-      #small-pic {
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        top: 300px;
-        left: 50%;
-        margin-left: -50px;
-        background-image: url("small-pic.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Welcome to my website</h1>
-    <p>Here you can find my personal portfolio and project/interest blog. I'll be posting code snippets and updates on projects related to AI, web development, and cyber security. Additionally, I'll be sharing things that I find generally interesting in these areas.</p>
-    <div id="small-pic"></div>
-  </body>
+<head>
+  <title>Oliver Slapinski's Professional Blog</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="header-block">
+	<h1>Oliver Slapinski's Professional Blog</h1>
+	<div class="topnav">
+  	<a href="#">Home</a>
+  	<a href="#">About Me</a>
+  	<a href="#">Projects</a>
+  	<a href="#">Blogs</a>
+  	<div class="search-container">
+    	<form>
+      	<input type="text" placeholder="Search...">
+      	<button>Search</button>
+    	</form>
+  	</div>
+	</div>
+  </div>
+  <div class="welcome-block">
+	<h2>Welcome to my personal site</h2>
+	<p>This is my personal blog where I will be posting projects and blogs of topics of interests.</p>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+</body>
 </html>
