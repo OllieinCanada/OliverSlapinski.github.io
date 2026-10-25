@@ -1,0 +1,2548 @@
+{
+  "version": "0.1.0",
+  "model": "deterministic-simulation",
+  "budget": 3,
+  "summary": [
+    {
+      "strategy": "retry",
+      "runs": 8,
+      "completed": 3,
+      "unsafe": 5,
+      "unknown": 0,
+      "rejected": 0
+    },
+    {
+      "strategy": "observe",
+      "runs": 8,
+      "completed": 1,
+      "unsafe": 1,
+      "unknown": 7,
+      "rejected": 0
+    },
+    {
+      "strategy": "guarded",
+      "runs": 8,
+      "completed": 5,
+      "unsafe": 0,
+      "unknown": 1,
+      "rejected": 2
+    }
+  ],
+  "results": [
+    {
+      "version": "0.1.0",
+      "scenario": "clean",
+      "strategy": "retry",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "Provider dispatch acknowledged; assumed application success.",
+      "attempts": 1,
+      "ticks": 1,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Provider dispatch acknowledged; assumed application success.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": true
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "clean",
+      "strategy": "observe",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "Observed a new confirmation bound to this operation and target.",
+      "attempts": 1,
+      "ticks": 2,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 2,
+          "type": "ui.changed",
+          "actor": "browser",
+          "message": "A new approval confirmation is visible for invoice-1042.",
+          "data": {
+            "text": "Approved",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042"
+          }
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Approved” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Approved",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 7,
+          "tick": 2,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Observed a new confirmation bound to this operation and target.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": true
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "clean",
+      "strategy": "guarded",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "A durable receipt proves this operation committed on its intended target.",
+      "attempts": 1,
+      "ticks": 1,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "guarded": true
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "A durable receipt proves this operation committed on its intended target.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": true
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "lost-ack",
+      "strategy": "retry",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "Provider dispatch acknowledged; assumed application success.",
+      "attempts": 2,
+      "ticks": 2,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        },
+        {
+          "id": "receipt-2",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 2
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "fault.ack-lost",
+          "actor": "fault",
+          "message": "The server committed, but the acknowledgement was lost.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 1,
+          "type": "decision.retry",
+          "actor": "agent",
+          "message": "Timeout: retry without an idempotency key.",
+          "data": {}
+        },
+        {
+          "sequence": 7,
+          "tick": 2,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 2: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 2,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-2",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 2
+          }
+        },
+        {
+          "sequence": 9,
+          "tick": 2,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Provider dispatch acknowledged; assumed application success.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [
+        "duplicate-effect",
+        "false-success"
+      ],
+      "safe": false,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "lost-ack",
+      "strategy": "observe",
+      "budget": 3,
+      "outcome": "unknown",
+      "reason": "No conclusive evidence before the observation deadline.",
+      "attempts": 1,
+      "ticks": 4,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "fault.ack-lost",
+          "actor": "fault",
+          "message": "The server committed, but the acknowledgement was lost.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 7,
+          "tick": 3,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 4,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 9,
+          "tick": 4,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "No conclusive evidence before the observation deadline.",
+          "data": {
+            "outcome": "unknown"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "lost-ack",
+      "strategy": "guarded",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "A durable receipt proves this operation committed on its intended target.",
+      "attempts": 1,
+      "ticks": 2,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "guarded": true
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "fault.ack-lost",
+          "actor": "fault",
+          "message": "The server committed, but the acknowledgement was lost.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "lookup.result",
+          "actor": "server",
+          "message": "Authoritative status: committed on the intended target.",
+          "data": {
+            "receipt": "receipt-1"
+          }
+        },
+        {
+          "sequence": 7,
+          "tick": 2,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "A durable receipt proves this operation committed on its intended target.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": true
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "delayed-ui",
+      "strategy": "retry",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "Provider dispatch acknowledged; assumed application success.",
+      "attempts": 1,
+      "ticks": 1,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Provider dispatch acknowledged; assumed application success.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": true
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "delayed-ui",
+      "strategy": "observe",
+      "budget": 3,
+      "outcome": "unknown",
+      "reason": "No conclusive evidence before the observation deadline.",
+      "attempts": 1,
+      "ticks": 4,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 2,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 6,
+          "tick": 3,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 7,
+          "tick": 4,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 4,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "No conclusive evidence before the observation deadline.",
+          "data": {
+            "outcome": "unknown"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "delayed-ui",
+      "strategy": "guarded",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "A durable receipt proves this operation committed on its intended target.",
+      "attempts": 1,
+      "ticks": 1,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "guarded": true
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "A durable receipt proves this operation committed on its intended target.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": true
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "stale-text",
+      "strategy": "retry",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "Provider dispatch acknowledged; assumed application success.",
+      "attempts": 1,
+      "ticks": 1,
+      "effects": [],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Approved” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Approved",
+            "operationId": "previous-operation"
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "request.rejected",
+          "actor": "server",
+          "message": "The application rejected the action after provider dispatch.",
+          "data": {}
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Provider dispatch acknowledged; assumed application success.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [
+        "false-success"
+      ],
+      "safe": false,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "stale-text",
+      "strategy": "observe",
+      "budget": 3,
+      "outcome": "unknown",
+      "reason": "No conclusive evidence before the observation deadline.",
+      "attempts": 1,
+      "ticks": 4,
+      "effects": [],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Approved” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Approved",
+            "operationId": "previous-operation"
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "request.rejected",
+          "actor": "server",
+          "message": "The application rejected the action after provider dispatch.",
+          "data": {}
+        },
+        {
+          "sequence": 5,
+          "tick": 2,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Approved” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Approved",
+            "operationId": "previous-operation"
+          }
+        },
+        {
+          "sequence": 6,
+          "tick": 3,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Approved” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Approved",
+            "operationId": "previous-operation"
+          }
+        },
+        {
+          "sequence": 7,
+          "tick": 4,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Approved” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Approved",
+            "operationId": "previous-operation"
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 4,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "No conclusive evidence before the observation deadline.",
+          "data": {
+            "outcome": "unknown"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "stale-text",
+      "strategy": "guarded",
+      "budget": 3,
+      "outcome": "failed",
+      "reason": "Authoritative evidence confirms rejection.",
+      "attempts": 1,
+      "ticks": 2,
+      "effects": [],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Approved” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Approved",
+            "operationId": "previous-operation"
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "guarded": true
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "request.rejected",
+          "actor": "server",
+          "message": "The application rejected the action after provider dispatch.",
+          "data": {}
+        },
+        {
+          "sequence": 5,
+          "tick": 2,
+          "type": "lookup.rejected",
+          "actor": "server",
+          "message": "Authoritative status: the operation was rejected.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Authoritative evidence confirms rejection.",
+          "data": {
+            "outcome": "failed"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "target-drift",
+      "strategy": "retry",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "Provider dispatch acknowledged; assumed application success.",
+      "attempts": 1,
+      "ticks": 1,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-2088",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "fault.target-drift",
+          "actor": "fault",
+          "message": "The active target changed to invoice-2088 after the snapshot.",
+          "data": {}
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-2088",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-2088.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-2088",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 6,
+          "tick": 1,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Provider dispatch acknowledged; assumed application success.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [
+        "wrong-target",
+        "false-success"
+      ],
+      "safe": false,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "target-drift",
+      "strategy": "observe",
+      "budget": 3,
+      "outcome": "unknown",
+      "reason": "Target drift detected after dispatch; the effect may already have happened.",
+      "attempts": 1,
+      "ticks": 2,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-2088",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "fault.target-drift",
+          "actor": "fault",
+          "message": "The active target changed to invoice-2088 after the snapshot.",
+          "data": {}
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-2088",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-2088.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-2088",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "ui.changed",
+          "actor": "browser",
+          "message": "A new approval confirmation is visible for invoice-2088.",
+          "data": {
+            "text": "Approved",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-2088"
+          }
+        },
+        {
+          "sequence": 7,
+          "tick": 2,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Approved” on invoice-2088.",
+          "data": {
+            "target": "invoice-2088",
+            "text": "Approved",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 2,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Target drift detected after dispatch; the effect may already have happened.",
+          "data": {
+            "outcome": "unknown"
+          }
+        }
+      ],
+      "violations": [
+        "wrong-target"
+      ],
+      "safe": false,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "target-drift",
+      "strategy": "guarded",
+      "budget": 3,
+      "outcome": "failed",
+      "reason": "Target precondition rejected the request before the effect.",
+      "attempts": 1,
+      "ticks": 1,
+      "effects": [],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "fault.target-drift",
+          "actor": "fault",
+          "message": "The active target changed to invoice-2088 after the snapshot.",
+          "data": {}
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": "approve-invoice-1042",
+            "target": "invoice-2088",
+            "guarded": true
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "request.rejected",
+          "actor": "server",
+          "message": "Target precondition failed before any effect.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 1,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Target precondition rejected the request before the effect.",
+          "data": {
+            "outcome": "failed"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "precommit-drop",
+      "strategy": "retry",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "Provider dispatch acknowledged; assumed application success.",
+      "attempts": 2,
+      "ticks": 2,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 2
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "fault.precommit-drop",
+          "actor": "fault",
+          "message": "The request never reached the commit boundary.",
+          "data": {}
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "decision.retry",
+          "actor": "agent",
+          "message": "Timeout: retry without an idempotency key.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 2: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 7,
+          "tick": 2,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 2
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 2,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Provider dispatch acknowledged; assumed application success.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": true
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "precommit-drop",
+      "strategy": "observe",
+      "budget": 3,
+      "outcome": "unknown",
+      "reason": "No conclusive evidence before the observation deadline.",
+      "attempts": 1,
+      "ticks": 4,
+      "effects": [],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "fault.precommit-drop",
+          "actor": "fault",
+          "message": "The request never reached the commit boundary.",
+          "data": {}
+        },
+        {
+          "sequence": 5,
+          "tick": 2,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 6,
+          "tick": 3,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 7,
+          "tick": 4,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 4,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "No conclusive evidence before the observation deadline.",
+          "data": {
+            "outcome": "unknown"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "precommit-drop",
+      "strategy": "guarded",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "A durable receipt proves this operation committed on its intended target.",
+      "attempts": 2,
+      "ticks": 3,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 3
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "guarded": true
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "fault.precommit-drop",
+          "actor": "fault",
+          "message": "The request never reached the commit boundary.",
+          "data": {}
+        },
+        {
+          "sequence": 5,
+          "tick": 2,
+          "type": "lookup.result",
+          "actor": "server",
+          "message": "Authoritative status: no committed operation.",
+          "data": {
+            "receipt": null
+          }
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "decision.retry",
+          "actor": "agent",
+          "message": "Retry within the server’s retention window, using the original operation key.",
+          "data": {}
+        },
+        {
+          "sequence": 7,
+          "tick": 3,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 2: dispatch approval.",
+          "data": {
+            "key": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "guarded": true
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 3,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 3
+          }
+        },
+        {
+          "sequence": 9,
+          "tick": 3,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "A durable receipt proves this operation committed on its intended target.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": true
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "read-outage",
+      "strategy": "retry",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "Provider dispatch acknowledged; assumed application success.",
+      "attempts": 2,
+      "ticks": 2,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        },
+        {
+          "id": "receipt-2",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 2
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "fault.ack-lost",
+          "actor": "fault",
+          "message": "The server committed, but the acknowledgement was lost.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 1,
+          "type": "decision.retry",
+          "actor": "agent",
+          "message": "Timeout: retry without an idempotency key.",
+          "data": {}
+        },
+        {
+          "sequence": 7,
+          "tick": 2,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 2: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 2,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-2",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 2
+          }
+        },
+        {
+          "sequence": 9,
+          "tick": 2,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Provider dispatch acknowledged; assumed application success.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [
+        "duplicate-effect",
+        "false-success"
+      ],
+      "safe": false,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "read-outage",
+      "strategy": "observe",
+      "budget": 3,
+      "outcome": "unknown",
+      "reason": "No conclusive evidence before the observation deadline.",
+      "attempts": 1,
+      "ticks": 4,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "fault.ack-lost",
+          "actor": "fault",
+          "message": "The server committed, but the acknowledgement was lost.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 7,
+          "tick": 3,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 4,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 9,
+          "tick": 4,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "No conclusive evidence before the observation deadline.",
+          "data": {
+            "outcome": "unknown"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "read-outage",
+      "strategy": "guarded",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "A durable receipt proves this operation committed on its intended target.",
+      "attempts": 2,
+      "ticks": 3,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "guarded": true
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "fault.ack-lost",
+          "actor": "fault",
+          "message": "The server committed, but the acknowledgement was lost.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "lookup.unavailable",
+          "actor": "server",
+          "message": "Authoritative operation status is unavailable.",
+          "data": {}
+        },
+        {
+          "sequence": 7,
+          "tick": 2,
+          "type": "decision.retry",
+          "actor": "agent",
+          "message": "Retry within the server’s retention window, using the original operation key.",
+          "data": {}
+        },
+        {
+          "sequence": 8,
+          "tick": 3,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 2: dispatch approval.",
+          "data": {
+            "key": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "guarded": true
+          }
+        },
+        {
+          "sequence": 9,
+          "tick": 3,
+          "type": "request.deduplicated",
+          "actor": "server",
+          "message": "The same idempotency key returned the original receipt.",
+          "data": {
+            "receipt": "receipt-1"
+          }
+        },
+        {
+          "sequence": 10,
+          "tick": 3,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "A durable receipt proves this operation committed on its intended target.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": true
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "key-expired",
+      "strategy": "retry",
+      "budget": 3,
+      "outcome": "success",
+      "reason": "Provider dispatch acknowledged; assumed application success.",
+      "attempts": 2,
+      "ticks": 2,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        },
+        {
+          "id": "receipt-2",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 2
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "fault.ack-lost",
+          "actor": "fault",
+          "message": "The server committed, but the acknowledgement was lost.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 1,
+          "type": "decision.retry",
+          "actor": "agent",
+          "message": "Timeout: retry without an idempotency key.",
+          "data": {}
+        },
+        {
+          "sequence": 7,
+          "tick": 2,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 2: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 2,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-2",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 2
+          }
+        },
+        {
+          "sequence": 9,
+          "tick": 2,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Provider dispatch acknowledged; assumed application success.",
+          "data": {
+            "outcome": "success"
+          }
+        }
+      ],
+      "violations": [
+        "duplicate-effect",
+        "false-success"
+      ],
+      "safe": false,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "key-expired",
+      "strategy": "observe",
+      "budget": 3,
+      "outcome": "unknown",
+      "reason": "No conclusive evidence before the observation deadline.",
+      "attempts": 1,
+      "ticks": 4,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": null,
+            "target": "invoice-1042",
+            "guarded": false
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "fault.ack-lost",
+          "actor": "fault",
+          "message": "The server committed, but the acknowledgement was lost.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 7,
+          "tick": 3,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 8,
+          "tick": 4,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 9,
+          "tick": 4,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "No conclusive evidence before the observation deadline.",
+          "data": {
+            "outcome": "unknown"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": false
+    },
+    {
+      "version": "0.1.0",
+      "scenario": "key-expired",
+      "strategy": "guarded",
+      "budget": 3,
+      "outcome": "unknown",
+      "reason": "Unknown outcome; retry refused after the deduplication window expired.",
+      "attempts": 1,
+      "ticks": 2,
+      "effects": [
+        {
+          "id": "receipt-1",
+          "operationId": "approve-invoice-1042",
+          "target": "invoice-1042",
+          "tick": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "tick": 0,
+          "type": "intent",
+          "actor": "agent",
+          "message": "Approve invoice-1042 exactly once.",
+          "data": {
+            "expectedTarget": "invoice-1042",
+            "operationId": "approve-invoice-1042"
+          }
+        },
+        {
+          "sequence": 2,
+          "tick": 0,
+          "type": "ui.observed",
+          "actor": "agent",
+          "message": "Observed “Pending” on invoice-1042.",
+          "data": {
+            "target": "invoice-1042",
+            "text": "Pending",
+            "operationId": null
+          }
+        },
+        {
+          "sequence": 3,
+          "tick": 1,
+          "type": "request.dispatched",
+          "actor": "agent",
+          "message": "Attempt 1: dispatch approval.",
+          "data": {
+            "key": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "guarded": true
+          }
+        },
+        {
+          "sequence": 4,
+          "tick": 1,
+          "type": "effect.committed",
+          "actor": "server",
+          "message": "Approval committed on invoice-1042.",
+          "data": {
+            "id": "receipt-1",
+            "operationId": "approve-invoice-1042",
+            "target": "invoice-1042",
+            "tick": 1
+          }
+        },
+        {
+          "sequence": 5,
+          "tick": 1,
+          "type": "fault.ack-lost",
+          "actor": "fault",
+          "message": "The server committed, but the acknowledgement was lost.",
+          "data": {}
+        },
+        {
+          "sequence": 6,
+          "tick": 2,
+          "type": "lookup.unavailable",
+          "actor": "server",
+          "message": "Authoritative operation status is unavailable.",
+          "data": {}
+        },
+        {
+          "sequence": 7,
+          "tick": 2,
+          "type": "decision.stop",
+          "actor": "agent",
+          "message": "Idempotency guarantee expired. Do not risk a second effect.",
+          "data": {}
+        },
+        {
+          "sequence": 8,
+          "tick": 2,
+          "type": "decision.final",
+          "actor": "agent",
+          "message": "Unknown outcome; retry refused after the deduplication window expired.",
+          "data": {
+            "outcome": "unknown"
+          }
+        }
+      ],
+      "violations": [],
+      "safe": true,
+      "completed": false
+    }
+  ]
+}

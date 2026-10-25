@@ -1,0 +1,16 @@
+{
+  "name": "actionproof",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A deterministic fault-injection lab for consequential agent actions.",
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "test": "node --test --test-isolation=none",
+    "check": "node --experimental-vm-modules scripts/check.mjs",
+    "bundle": "node scripts/bundle.mjs",
+    "bench": "node cli.mjs",
+    "demo": "node scripts/serve.mjs"
+  },
+  "license": "MIT"
+}

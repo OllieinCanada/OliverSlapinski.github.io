@@ -1,0 +1,32 @@
+name: Test ActionProof
+on:
+  push:
+    branches: [feat/actionproof-lab]
+  pull_request:
+    paths: ["actionproof/**", ".github/workflows/actionproof.yml"]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: actionproof
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: actionproof/.node-version
+      - run: node --test --test-isolation=none
+      - run: node --experimental-vm-modules scripts/check.mjs
+      - run: node scripts/bundle.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install playwright==1.62.0
+      - run: python -m playwright install --with-deps chromium
+      - run: python tests/browser_smoke.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: actionproof-browser-evidence
+          path: actionproof/artifacts/
