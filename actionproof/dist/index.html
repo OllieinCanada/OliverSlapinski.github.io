@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ActionProof: a reproducible fault-injection lab for agent actions. Inspect retries, durable effects, and the evidence behind a success claim.">
+  <title>ActionProof — Did the action actually happen?</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="#"><span class="brand-icon" aria-hidden="true">a<span>p</span></span>actionproof<span class="version">LAB / 0.2</span></a><nav aria-label="Primary"><a href="#lab">Simulation</a><a href="#adapter">Real adapter</a><a href="#method">Method</a></nav><span class="local-indicator"><i></i>Runs in your browser</span></header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">FAULT INJECTION / AGENT RELIABILITY</p><h1>“Done” is a claim.<br><span>Where’s the evidence?</span></h1><p class="lede">A tool call can succeed while the task fails. Break the acknowledgement, delay the UI, or change the target. Then inspect what each policy actually proves.</p><a class="primary-link" href="#lab">Run the experiment <span aria-hidden="true">↘</span></a></div>
+      <aside class="premise"><span class="small-label">THE FAILURE THAT STARTED THIS LAB</span><div class="signal-line"><span>01</span><p>Server commits the approval.</p><b class="ok">COMMITTED</b></div><div class="signal-line"><span>02</span><p>The response never arrives.</p><b class="bad">LOST</b></div><div class="signal-line"><span>03</span><p>The agent tries again.</p><b class="bad">DUPLICATE?</b></div><p class="premise-note">A timeout tells you what you received.<br>It doesn’t tell you what the server did.</p></aside>
+    </section>
+
+    <section id="lab" class="lab-section">
+      <div class="section-heading"><div><p class="eyebrow">01 / THE EXPERIMENT</p><h2>Break one thing. Follow the evidence.</h2></div><span class="quiet mono">SYNTHETIC · DETERMINISTIC · NO API CALLS</span></div>
+      <div class="lab-grid">
+        <aside class="controls">
+          <label for="scenario">Failure scenario</label><select id="scenario"></select>
+          <p id="scenario-description" class="help"></p>
+          <label for="strategy">Agent policy</label><select id="strategy"></select>
+          <p id="strategy-description" class="help"></p>
+          <label for="budget">Observation budget <output id="budget-value" for="budget">3 ticks</output></label><input id="budget" type="range" min="1" max="10" value="3">
+          <p class="help">Logical simulation steps, not measured wall-clock latency.</p>
+          <button id="run" class="primary-button">Run experiment <span aria-hidden="true">↗</span></button>
+          <button id="download" class="secondary-button">Download this trace <span aria-hidden="true">↓</span></button>
+          <p class="boundary"><span class="boundary-dot"></span>Every invoice and effect is synthetic. This lab cannot approve or send anything.</p>
+        </aside>
+        <div class="experiment">
+          <div class="run-header"><div><span class="small-label">GROUND TRUTH VS. AGENT CLAIM</span><h3 id="run-title"></h3></div><span id="verdict" class="verdict"></span></div>
+          <div class="facts" aria-live="polite"><div><span>Agent reports</span><strong id="outcome"></strong></div><div><span>Durable effects</span><strong id="effects"></strong></div><div><span>Dispatches</span><strong id="attempts"></strong></div><div><span>Invariant</span><strong id="safety"></strong></div></div>
+          <div id="reason" class="reason"></div>
+          <div class="trace-heading"><h4>Event trace</h4><div class="trace-legend"><span><i class="agent-dot"></i>Agent</span><span><i class="server-dot"></i>Server</span><span><i class="fault-dot"></i>Fault</span></div></div>
+          <div class="replay-controls"><button id="back" aria-label="Previous event">←</button><button id="play">Play trace</button><button id="next" aria-label="Next event">→</button><input id="step" type="range" min="1" max="1" value="1" aria-label="Visible trace events"><output id="step-label"></output></div>
+          <ol id="trace" class="trace" aria-label="Simulation event trace"></ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="results-section">
+      <div class="section-heading"><div><p class="eyebrow">02 / THE CORPUS</p><h2>Safety and completion are different metrics.</h2></div><button id="compare" class="secondary-button">Rerun all 24 cases ↗</button></div>
+      <p class="section-copy">Eight explicit failure scenarios. Three policies. Click any result to inspect its trace. Unknown outcomes remain visible; refusing an unsafe retry doesn’t count as completing the task.</p>
+      <div id="summaries" class="summaries"></div>
+      <div class="table-wrap"><table><caption class="sr-only">Results by scenario and agent policy</caption><thead><tr><th scope="col">Injected scenario</th><th scope="col">Blind retry</th><th scope="col">Causal observation</th><th scope="col">Guard + reconcile</th></tr></thead><tbody id="matrix"></tbody></table></div>
+      <p class="data-note" id="corpus-note"></p>
+    </section>
+
+    <section id="adapter" class="results-section">
+      <div class="section-heading"><div><p class="eyebrow">03 / REAL HTTP + SQLITE</p><h2>Beyond simulation: disconnect, restart, retry.</h2></div><button id="adapter-download" class="secondary-button" disabled>Download measured evidence ↓</button></div>
+      <p class="section-copy">A loopback HTTP server commits synthetic approvals to SQLite. The harness disconnects responses, terminates the server after commit, restarts it against the same database, and sends 20 concurrent requests. It evaluates the database directly rather than trusting the HTTP response.</p>
+      <p id="adapter-status" class="evidence-status" role="status">No measured report is bundled yet. Run the real adapter benchmark to produce one.</p>
+      <div class="table-wrap"><table><caption class="sr-only">Measured HTTP and SQLite experiments, including deliberately unsafe controls</caption><thead><tr><th scope="col">Experiment</th><th scope="col">Durable effects</th><th scope="col">Observed result</th></tr></thead><tbody id="adapter-matrix"></tbody></table></div>
+      <p id="adapter-provenance" class="data-note"></p><a id="adapter-source" class="text-link" hidden target="_blank" rel="noreferrer">Inspect the tested source commit ↗</a>
+      <p class="data-note">These are local synthetic approvals, not real payments or production workloads. Two unguarded controls intentionally reproduce unsafe effects. SQLite keys do not expire in this adapter; the expiry scenario above remains a separate simulation.</p>
+    </section>
+
+    <section id="method" class="method-section">
+      <div><p class="eyebrow">04 / THE ENGINEERING</p><h2>Separate intent,<br>effect, and evidence.</h2><p>Each run has a durable server effect log and a separate stream of observations available to the policy. The evaluator checks the effect log after the policy stops. It never takes “success” at face value.</p><a class="text-link" id="download-suite" href="#">Export the simulated run as JSON ↓</a></div>
+      <div class="method-details"><details open><summary>What does “unsafe” mean?</summary><p>A duplicate side effect, an effect on the wrong target, or a reported success without exactly one correct effect. A single run can violate more than one invariant.</p></details><details><summary>What makes a retry safe here?</summary><p>The simulated server atomically binds an operation key to a durable receipt. Reusing that key inside its documented retention window returns the original receipt. The real adapter uses a SQLite transaction to bind the key, payload, target check, and effect. Its keys do not expire. These are server capabilities; a browser automation client cannot invent them.</p></details><details><summary>What doesn’t this prove?</summary><p>This is not a benchmark of any LLM or production agent. The simulation and real HTTP experiments are chosen counterexamples, not representative failure rates. The adapter tests one local SQLite database, process restarts, and concurrent clients. It does not test replica failover, machine power loss, real browser automation, or external financial systems.</p></details><details><summary>How can I reproduce it?</summary><p>Run <code>node cli.mjs --json</code> for simulation results. Run <code>python3 -m adapter.benchmark --output dist/adapter-evidence.json</code> for the real experiments, then <code>node scripts/bundle.mjs</code> to embed their measured report. Neither command calls a model or external system.</p></details></div>
+    </section>
+    <section class="author-strip"><span class="eyebrow">BUILT BY OLIVER SLAPINSKI</span><p>A small reliability lab informed by hands-on work on agent execution and browser postconditions.</p><a href="https://github.com/OllieinCanada" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://github.com/OrchestratorInc/agent-orchestrator/pull/4783" target="_blank" rel="noreferrer">Related upstream contribution ↗</a></section>
+  </main>
+  <footer><span>ActionProof / v0.2.0</span><span>Evidence before confidence.</span><span>Synthetic data. No model calls.</span></footer>
+  <noscript><p class="noscript">Enable JavaScript to run the local simulation. The Node CLI is an alternative.</p></noscript>
+  <script id="adapter-evidence" type="application/json">null</script>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>

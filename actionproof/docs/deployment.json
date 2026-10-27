@@ -1,0 +1,11 @@
++{
+  "provider": "Render",
+  "type": "static_site",
+  "workspace_id": "tea-d9247q1o3t8c73avjscg",
+  "service_id": "srv-dbg1mfavcj2c73at60t0",
+  "deploy_id": "dep-dbg1mfivcj2c73at61ig",
+  "url": "https://actionproof-ollie.onrender.com",
+  "source_commit": "75901b79bf6a6dfb14b586340738a6cb718ae851",
+  "branch": "feat/actionproof-lab",
+  "auto_deploy": false
+}
