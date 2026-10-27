@@ -22,6 +22,7 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - run: python tests/browser_smoke.py
       - run: python scripts/record-demo.py
+      - run: python scripts/verify-deployment.py https://actionproof-ollie.onrender.com --commit 75901b79bf6a6dfb14b586340738a6cb718ae851 --output artifacts/live-verification.json
       - uses: actions/upload-artifact@v4
         with:
           name: actionproof-browser-evidence

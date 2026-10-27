@@ -2,6 +2,8 @@
 
 **Did the action happen—or did the agent just say “done”?**
 
+**[Open the live demo](https://actionproof-ollie.onrender.com)** · [Case study](docs/case-study.md) · [Protocol design](docs/real-adapter.md)
+
 ActionProof is a dependency-free fault-injection lab for consequential agent actions. It separates dispatch acknowledgements, UI observations, durable side effects, and the evidence used to claim success. A browser demo and a Node CLI share a deterministic simulation engine; a real HTTP + SQLite adapter tests disconnects, process restart, and concurrent clients against durable records.
 
 This prototype evaluates explicit protocol policies and server mechanisms, not language models. All data is synthetic. The simulation and real HTTP counterexamples are not a representative sample or production failure-rate estimate.

@@ -13,7 +13,11 @@ Local runtime: Node 24.19.0, Python 3.12.14.
 
 ## Real HTTP verification
 
-The five HTTP integration tests require loopback sockets and separate server processes. They were attempted locally and could not start because the sandbox denies socket creation. No local HTTP pass is claimed. CI runs the complete Python suite, generates the eight-case measured report, builds the demo from that report, tests it in Chromium, and records the captioned walkthrough. Inspect the latest PR run for those results. Render repeats the Python and Node checks and regenerates evidence for the exact deployed commit before serving the static site.
+The five HTTP integration tests require loopback sockets and separate server processes. They were attempted locally and could not start because the sandbox denies socket creation. No local HTTP pass is claimed.
+
+[CI run 40444009792](https://github.com/OllieinCanada/OliverSlapinski.github.io/actions/runs/40444009792) passed all 22 Node tests, the complete 15-test Python suite, eight real HTTP/SQLite experiments, Chromium checks, and the captioned recording. The source branch head was `75901b79bf6a6dfb14b586340738a6cb718ae851`; GitHub's report binds to the tested PR merge commit. The report and video are saved in the run's evidence artifact.
+
+Render independently repeated the Python and Node checks and regenerated evidence for deployed commit `75901b79bf6a6dfb14b586340738a6cb718ae851`. Deploy `dep-dbg1mfivcj2c73at61ig` reached `live`. Read-only verification checks the public HTML, JavaScript MIME types, CSS, measured JSON, and agreement between embedded and downloadable evidence. See the latest CI artifact for the HTTP verification result.
 
 ## Regression strength
 
@@ -29,4 +33,4 @@ Local Chromium launch was attempted with Playwright 1.62.0. The browser exited b
 
 The [GitHub Actions run on the initial published prototype](https://github.com/OllieinCanada/OliverSlapinski.github.io/actions/runs/40162872117) passed the Node suite, syntax checks, standalone build, and real Chromium QA with Playwright 1.62.0. Browser checks exercised controls, replay, download contents, console errors, and responsive overflow at 320, 393, 768, and 1440 pixels. Screenshot artifacts were retrieved and the desktop and tablet renders inspected. Later commits retain these checks; inspect the latest PR checks for the final head's status.
 
-The Sites publishing helper scripts are not installed in this execution environment. No hosted deployment is claimed. The generated standalone HTML works without a host.
+The Sites publishing helper scripts are not installed in this execution environment. The user selected their Render workspace instead, and the static demo is deployed at https://actionproof-ollie.onrender.com. Automatic deployment is disabled; documentation-only branch updates do not silently replace the verified deployment.
