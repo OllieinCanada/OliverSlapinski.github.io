@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "model": "deterministic-simulation",
   "budget": 3,
   "summary": [
@@ -30,7 +30,7 @@
   ],
   "results": [
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "clean",
       "strategy": "retry",
       "budget": 3,
@@ -111,7 +111,7 @@
       "completed": true
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "clean",
       "strategy": "observe",
       "budget": 3,
@@ -216,7 +216,7 @@
       "completed": true
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "clean",
       "strategy": "guarded",
       "budget": 3,
@@ -297,7 +297,7 @@
       "completed": true
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "lost-ack",
       "strategy": "retry",
       "budget": 3,
@@ -428,7 +428,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "lost-ack",
       "strategy": "observe",
       "budget": 3,
@@ -553,7 +553,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "lost-ack",
       "strategy": "guarded",
       "budget": 3,
@@ -652,7 +652,7 @@
       "completed": true
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "delayed-ui",
       "strategy": "retry",
       "budget": 3,
@@ -733,7 +733,7 @@
       "completed": true
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "delayed-ui",
       "strategy": "observe",
       "budget": 3,
@@ -850,7 +850,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "delayed-ui",
       "strategy": "guarded",
       "budget": 3,
@@ -931,7 +931,7 @@
       "completed": true
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "stale-text",
       "strategy": "retry",
       "budget": 3,
@@ -1002,7 +1002,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "stale-text",
       "strategy": "observe",
       "budget": 3,
@@ -1107,7 +1107,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "stale-text",
       "strategy": "guarded",
       "budget": 3,
@@ -1184,7 +1184,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "target-drift",
       "strategy": "retry",
       "budget": 3,
@@ -1276,7 +1276,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "target-drift",
       "strategy": "observe",
       "budget": 3,
@@ -1391,7 +1391,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "target-drift",
       "strategy": "guarded",
       "budget": 3,
@@ -1468,7 +1468,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "precommit-drop",
       "strategy": "retry",
       "budget": 3,
@@ -1577,7 +1577,7 @@
       "completed": true
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "precommit-drop",
       "strategy": "observe",
       "budget": 3,
@@ -1682,7 +1682,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "precommit-drop",
       "strategy": "guarded",
       "budget": 3,
@@ -1801,7 +1801,7 @@
       "completed": true
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "read-outage",
       "strategy": "retry",
       "budget": 3,
@@ -1932,7 +1932,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "read-outage",
       "strategy": "observe",
       "budget": 3,
@@ -2057,7 +2057,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "read-outage",
       "strategy": "guarded",
       "budget": 3,
@@ -2184,7 +2184,7 @@
       "completed": true
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "key-expired",
       "strategy": "retry",
       "budget": 3,
@@ -2315,7 +2315,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "key-expired",
       "strategy": "observe",
       "budget": 3,
@@ -2440,7 +2440,7 @@
       "completed": false
     },
     {
-      "version": "0.1.0",
+      "version": "0.2.0",
       "scenario": "key-expired",
       "strategy": "guarded",
       "budget": 3,

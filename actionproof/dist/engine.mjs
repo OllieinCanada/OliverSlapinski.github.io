@@ -3,7 +3,7 @@
  * UI state, dispatch acknowledgement, and durable effects are separate facts.
  * No network or real payment capability exists in this module.
  */
-export const VERSION = '0.1.0';
+export const VERSION = '0.2.0';
 
 export const STRATEGIES = Object.freeze([
   { id: 'retry', name: 'Blind retry', short: 'Retry', description: 'Trust dispatch acknowledgements; retry once after a timeout.' },
@@ -42,6 +42,7 @@ class World {
     this.effects = [];
     this.keys = new Map();
     this.attempts = 0;
+    this.firstDispatchTick = null;
     this.target = EXPECTED_TARGET;
     this.ui = scenario.staleUI ? { text: 'Approved', operationId: 'previous-operation' } : { text: 'Pending', operationId: null };
     this.pendingUI = [];
@@ -70,6 +71,7 @@ class World {
   dispatch({ key = null, guarded = false } = {}) {
     this.advance();
     this.attempts++;
+    if (this.firstDispatchTick === null) this.firstDispatchTick = this.tick;
     if (this.scenario.drift && this.attempts === 1) {
       this.target = OTHER_TARGET;
       this.record('fault.target-drift', 'fault', `The active target changed to ${OTHER_TARGET} after the snapshot.`);
@@ -128,7 +130,8 @@ class World {
     const retention = this.scenario.retentionTicks ?? 20;
     // Account for the next dispatch tick. The server contract, not a UI guess,
     // is what makes this retry safe. After expiry, preserve uncertainty.
-    return retention >= this.tick + 1 - 1;
+    const nextAttemptAge = this.tick + 1 - this.firstDispatchTick;
+    return nextAttemptAge <= retention;
   }
 }
 

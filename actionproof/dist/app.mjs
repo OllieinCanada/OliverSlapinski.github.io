@@ -1,9 +1,10 @@
-import { SCENARIOS, STRATEGIES, runScenario, runSuite, summarize } from './engine.mjs';
+import { SCENARIOS, STRATEGIES, runScenario, runSuite, summarize, VERSION } from './engine.mjs';
 
 const $ = (id) => document.getElementById(id);
 let current;
 let suite;
 let timer;
+let adapterReport;
 const titleCase = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 const kind = (run) => !run.safe ? 'unsafe' : run.completed ? 'complete' : run.outcome;
 const label = (run) => !run.safe ? 'Unsafe' : run.completed ? 'Completed' : run.outcome === 'failed' ? 'Rejected safely' : 'Unknown';
@@ -113,12 +114,50 @@ function renderSuite() {
   $('corpus-note').textContent = `Recomputed locally · observation budget: ${$('budget').value} logical ticks · 24 runs · illustrative counterexamples, not production failure rates. Rejected actions are listed in the matrix and JSON export.`;
 }
 
+function renderAdapterEvidence() {
+  try {
+    const report = JSON.parse($('adapter-evidence').textContent);
+    if (report === null) return;
+    if (report.model !== 'real-http-sqlite' || report.schema_version !== 1
+      || !Array.isArray(report.cases) || report.cases.length !== report.case_count
+      || report.case_count !== 8 || !report.cases.every((row) => row.checks_passed === true
+        && Number.isInteger(row.effect_count) && row.effect_count >= 0
+        && Array.isArray(row.effects) && row.effects.length === row.effect_count
+        && ['guarded', 'unsafe-control'].includes(row.kind))) {
+      throw new Error('Unsupported or incomplete evidence report');
+    }
+    const fragment = document.createDocumentFragment();
+    for (const result of report.cases) {
+      const row = document.createElement('tr');
+      const name = document.createElement('td'); name.textContent = result.name;
+      const count = document.createElement('td'); count.textContent = result.effect_count;
+      const outcome = document.createElement('td');
+      outcome.textContent = result.kind === 'unsafe-control' ? 'Unsafe control reproduced' : 'Invariant preserved';
+      outcome.className = result.kind === 'unsafe-control' ? 'evidence-control' : 'evidence-held';
+      row.append(name, count, outcome); fragment.append(row);
+    }
+    $('adapter-matrix').replaceChildren(fragment);
+    $('adapter-status').textContent = `${report.case_count} experiments verified against real HTTP and SQLite. Controls expose the failures; guarded cases preserve their specified invariants.`;
+    $('adapter-provenance').textContent = `Measured ${new Date(report.generated_at).toISOString()} · Python ${report.runtime.python} · SQLite ${report.runtime.sqlite} · No model or external-system calls.`;
+    if (typeof report.source_commit === 'string' && /^[a-f0-9]{40}$/.test(report.source_commit)) {
+      $('adapter-source').href = `https://github.com/OllieinCanada/OliverSlapinski.github.io/commit/${report.source_commit}`;
+      $('adapter-source').hidden = false;
+    }
+    adapterReport = report;
+    $('adapter-download').disabled = false;
+  } catch {
+    $('adapter-status').textContent = 'The bundled evidence report could not be validated. No measured results are claimed.';
+    $('adapter-matrix').replaceChildren();
+  }
+}
+
 $('run').addEventListener('click', run);
 $('scenario').addEventListener('change', run);
 $('strategy').addEventListener('change', run);
 $('budget').addEventListener('input', () => { $('budget-value').textContent = `${$('budget').value} ticks`; run(); renderSuite(); });
 $('download').addEventListener('click', () => exportJSON(`actionproof-${current.scenario}-${current.strategy}.json`, current));
-$('download-suite').addEventListener('click', (event) => { event.preventDefault(); exportJSON('actionproof-suite.json', { version: '0.1.0', model: 'deterministic-simulation', budget: Number($('budget').value), summary: summarize(suite), results: suite }); });
+$('adapter-download').addEventListener('click', () => { if (adapterReport) exportJSON('actionproof-real-adapter.json', adapterReport); });
+$('download-suite').addEventListener('click', (event) => { event.preventDefault(); exportJSON('actionproof-suite.json', { version: VERSION, model: 'deterministic-simulation', budget: Number($('budget').value), summary: summarize(suite), results: suite }); });
 $('compare').addEventListener('click', renderSuite);
 $('step').addEventListener('input', () => { stopPlayback(); renderTrace(); });
 $('back').addEventListener('click', () => { stopPlayback(); $('step').value = Math.max(1, Number($('step').value) - 1); renderTrace(); });
@@ -131,3 +170,4 @@ $('play').addEventListener('click', () => {
 });
 run();
 renderSuite();
+renderAdapterEvidence();
